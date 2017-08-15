@@ -75,12 +75,12 @@
 {
     FlickrCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-    Flickr *repo = self.flickrArray[indexPath.item];
+    Flickr *fPhoto = self.flickrArray[indexPath.item];
     
-    cell.flickrLabel.text = [repo title];
+    cell.flickrLabel.text = [fPhoto title];
     cell.flickrLabel.lineBreakMode = NSLineBreakByWordWrapping; // Word wraps title into the label
     
-    NSURL *imageURL = [repo imageURL];
+    NSURL *imageURL = [fPhoto imageURL];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:imageURL];
     
@@ -100,6 +100,8 @@
     
     return cell;
 }
+
+
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface Flickr : NSObject
 @property (nonatomic, strong) NSString *server;
@@ -15,6 +16,8 @@
 @property (nonatomic, strong) NSString *photoID;
 @property (nonatomic, strong) NSString *secret;
 @property (nonatomic, strong) NSString *title;
+
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (NSURL *)imageURL;
