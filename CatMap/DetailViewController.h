@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Flickr.h"
+#import <MapKit/MapKit.h>
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <MKMapViewDelegate>
+@property (nonatomic) Flickr *flickr;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+- (void)addAnnotation:(id<MKAnnotation>)annotation;
 
 @end

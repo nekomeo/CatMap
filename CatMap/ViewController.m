@@ -9,19 +9,24 @@
 #import "ViewController.h"
 #import "Flickr.h"
 #import "FlickrCollectionViewCell.h"
+#import "DetailViewController.h"
 
 
-@interface ViewController () <UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *flickrArray;
 
 @end
+
+#define zoomInMapArea 2100
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self URLSetup];
+    
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
 
 
@@ -30,7 +35,8 @@
 {
     self.flickrArray = [NSMutableArray array];
     
-    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=cats"];
+//    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=cats"];
+    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=51fe506858b9869a0fb583d7f206ef60&tags=cats&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1&auth_token=72157687552533846-8213e459faa22de1&api_sig=680cef5512f113c734ecad43740c147b"];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -101,7 +107,33 @@
     return cell;
 }
 
+#pragma mark - Flickr Delegate
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toDetailView"])
+    {
+        FlickrCollectionViewCell *cell = (FlickrCollectionViewCell *)sender;
+        NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:cell];
+        
+        Flickr *photo = [self.flickrArray objectAtIndex:selectedIndexPath.item];
+        
+        DetailViewController *detailVC = [segue destinationViewController];
+        detailVC.flickr = photo;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"toDetailView" sender:[self.collectionView cellForItemAtIndexPath:indexPath]];
+}
+
+#pragma mark - Flickr Map Stuff
+
+- (void)currentLocation:(CLLocation *)location
+{
+    
+}
 
 
 @end

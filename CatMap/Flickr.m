@@ -9,6 +9,7 @@
 #import "Flickr.h"
 
 @implementation Flickr
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     if (self = [super init])
@@ -18,6 +19,9 @@
         _server = [dictionary objectForKey:@"server"];
         _secret = [dictionary objectForKey:@"secret"];
         _title = [dictionary objectForKey:@"title"];
+        _latitude = [[dictionary objectForKey:@"latitude"] doubleValue];
+        _longitude = [[dictionary objectForKey:@"longitude"] doubleValue];
+        _coordinate = CLLocationCoordinate2DMake(self.latitude, self.longitude);
     }
     return self;
 }

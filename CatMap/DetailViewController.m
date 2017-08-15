@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -16,7 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self mapSetup];
+    self.title = self.flickr.title;
+    
+    [self addAnnotation:self.flickr];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +28,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)mapSetup
+{
+//    CLLocationCoordinate2D *location = 
 }
-*/
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
+    static NSString* RedPin = @"redPin";
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:RedPin];
+    
+    if (!pinView)
+    {
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:self.flickr reuseIdentifier:RedPin];
+        pinView.pinColor = MKPinAnnotationColorRed;
+        pinView.animatesDrop = YES;
+    }
+    return pinView;
+}
+
+- (void)addAnnotation:(id<MKAnnotation>)annotation
+{
+    [self.mapView addAnnotation:annotation];
+    [self.mapView showAnnotations:@[annotation] animated:YES];
+}
+
 
 @end

@@ -16,6 +16,7 @@
 		6A71AC031F437FA900A647AE /* Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC021F437FA900A647AE /* Flickr.m */; };
 		6A71AC061F437FFC00A647AE /* FlickrCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC051F437FFC00A647AE /* FlickrCollectionViewCell.m */; };
 		6A71AC091F43867000A647AE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC081F43867000A647AE /* DetailViewController.m */; };
+		6A71AC0C1F439C3200A647AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A71AC0B1F439C3200A647AE /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		6A71AC051F437FFC00A647AE /* FlickrCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCollectionViewCell.m; sourceTree = "<group>"; };
 		6A71AC071F43867000A647AE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		6A71AC081F43867000A647AE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		6A71AC0B1F439C3200A647AE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A71AC0C1F439C3200A647AE /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +56,7 @@
 			children = (
 				6A71ABE91F437F6B00A647AE /* CatMap */,
 				6A71ABE81F437F6B00A647AE /* Products */,
+				6A71AC0A1F439C3200A647AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +98,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6A71AC0A1F439C3200A647AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A71AC0B1F439C3200A647AE /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,6 +138,11 @@
 					6A71ABE61F437F6B00A647AE = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
