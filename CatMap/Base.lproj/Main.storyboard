@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="964" y="36.431784107946029"/>
         </scene>
-        <!--View Controller-->
+        <!--Search-->
         <scene sceneID="Cnk-2d-va3">
             <objects>
-                <viewController id="3oH-Xl-E5h" sceneMemberID="viewController">
+                <viewController title="Search" id="3oH-Xl-E5h" customClass="SearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mc6-ge-zhP"/>
                         <viewControllerLayoutGuide type="bottom" id="ndN-M5-6bi"/>
@@ -106,17 +106,58 @@
                     <view key="view" contentMode="scaleToFill" id="pgv-dH-SXO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Search Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hGv-VY-tXL">
+                                <rect key="frame" x="16" y="40" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8y1-vf-5cM">
+                                <rect key="frame" x="0.0" y="78" width="375" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="saveSearchButton:" destination="3oH-Xl-E5h" eventType="touchUpInside" id="LKz-A0-Gwg"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Tg5-ak-C5L">
+                                <rect key="frame" x="215" y="157" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="myLocationToggle:" destination="3oH-Xl-E5h" eventType="valueChanged" id="0lW-vn-BCx"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugJ-Av-9c0">
+                                <rect key="frame" x="110" y="162" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hGv-VY-tXL" secondAttribute="trailing" id="62C-Gm-PpO"/>
+                            <constraint firstAttribute="trailing" secondItem="8y1-vf-5cM" secondAttribute="trailing" id="AC8-rs-201"/>
+                            <constraint firstItem="8y1-vf-5cM" firstAttribute="top" secondItem="hGv-VY-tXL" secondAttribute="bottom" constant="8" id="HTz-Bf-cnF"/>
+                            <constraint firstItem="hGv-VY-tXL" firstAttribute="leading" secondItem="pgv-dH-SXO" secondAttribute="leadingMargin" id="Mtz-dc-Ezi"/>
+                            <constraint firstItem="8y1-vf-5cM" firstAttribute="leading" secondItem="pgv-dH-SXO" secondAttribute="leading" id="rTG-3X-5Ws"/>
+                            <constraint firstItem="hGv-VY-tXL" firstAttribute="top" secondItem="Mc6-ge-zhP" secondAttribute="bottom" constant="20" id="wNv-ab-D4Y"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myLocationToggle" destination="Tg5-ak-C5L" id="njQ-cP-bjm"/>
+                        <outlet property="searchTextField" destination="hGv-VY-tXL" id="A7a-qL-niY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5i4-yQ-gWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="765"/>
+            <point key="canvasLocation" x="964" y="828"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Detail-->
         <scene sceneID="6vL-BX-ysw">
             <objects>
-                <viewController id="bgV-fQ-4xV" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController title="Detail" id="bgV-fQ-4xV" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yJd-r1-Lnv"/>
                         <viewControllerLayoutGuide type="bottom" id="Rxr-ZA-uwC"/>
@@ -174,7 +215,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wko-kI-uOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231" y="36"/>
+            <point key="canvasLocation" x="178" y="36"/>
         </scene>
     </scenes>
 </document>

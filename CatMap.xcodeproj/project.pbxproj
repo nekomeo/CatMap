@@ -18,6 +18,7 @@
 		6A71AC091F43867000A647AE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC081F43867000A647AE /* DetailViewController.m */; };
 		6A71AC0C1F439C3200A647AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A71AC0B1F439C3200A647AE /* MapKit.framework */; };
 		6A71AC0F1F43A6AD00A647AE /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC0E1F43A6AD00A647AE /* SearchViewController.m */; };
+		6A71AC121F43B01500A647AE /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC111F43B01500A647AE /* LocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		6A71AC0B1F439C3200A647AE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6A71AC0D1F43A6AD00A647AE /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		6A71AC0E1F43A6AD00A647AE /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		6A71AC101F43B01500A647AE /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		6A71AC111F43B01500A647AE /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				6A71AC081F43867000A647AE /* DetailViewController.m */,
 				6A71AC0D1F43A6AD00A647AE /* SearchViewController.h */,
 				6A71AC0E1F43A6AD00A647AE /* SearchViewController.m */,
+				6A71AC101F43B01500A647AE /* LocationManager.h */,
+				6A71AC111F43B01500A647AE /* LocationManager.m */,
 				6A71ABF61F437F6B00A647AE /* Assets.xcassets */,
 				6A71ABF81F437F6B00A647AE /* LaunchScreen.storyboard */,
 				6A71ABFB1F437F6B00A647AE /* Info.plist */,
@@ -187,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A71AC121F43B01500A647AE /* LocationManager.m in Sources */,
 				6A71ABF21F437F6B00A647AE /* ViewController.m in Sources */,
 				6A71ABEF1F437F6B00A647AE /* AppDelegate.m in Sources */,
 				6A71AC031F437FA900A647AE /* Flickr.m in Sources */,

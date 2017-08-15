@@ -9,6 +9,11 @@
 #import "SearchViewController.h"
 
 @interface SearchViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *myLocationToggle;
+@property (nonatomic, strong) LocationManager *location;
+
+// Lighthouse Labs Coordinates: 49.282126, -123.108317
 
 @end
 
@@ -16,12 +21,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.location = [[LocationManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)searchPost
+{
+    NSString *searchString = self.searchTextField.text;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction)saveSearchButton:(UIButton *)sender
+{
+    [self searchPost];
+    [self resignFirstResponder];
+}
+
+- (IBAction)myLocationToggle:(UISwitch *)sender
+{
+    if (self.myLocationToggle.enabled == YES)
+    {
+        [self.location startLocationManager];
+    }
+    else
+    {
+        [self.location stopLocationManager];
+    }
 }
 
 /*
