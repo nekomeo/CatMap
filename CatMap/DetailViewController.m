@@ -10,6 +10,7 @@
 
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *imageCountryLabel;
 
 @end
 
@@ -33,18 +34,18 @@
 //    CLLocationCoordinate2D *location = 
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
-    static NSString* RedPin = @"redPin";
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:RedPin];
+    static NSString *redPin = @"RedPin";
+    MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:redPin];
     
-    if (!pinView)
+    if (!pin)
     {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:self.flickr reuseIdentifier:RedPin];
-        pinView.pinColor = MKPinAnnotationColorRed;
-        pinView.animatesDrop = YES;
+        pin = [[MKPinAnnotationView alloc] initWithAnnotation:self.flickr reuseIdentifier:redPin];
+        pin.pinTintColor = [UIColor redColor];
+        pin.animatesDrop = YES;
     }
-    return pinView;
+    return pin;
 }
 
 - (void)addAnnotation:(id<MKAnnotation>)annotation

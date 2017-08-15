@@ -17,6 +17,7 @@
 		6A71AC061F437FFC00A647AE /* FlickrCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC051F437FFC00A647AE /* FlickrCollectionViewCell.m */; };
 		6A71AC091F43867000A647AE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC081F43867000A647AE /* DetailViewController.m */; };
 		6A71AC0C1F439C3200A647AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A71AC0B1F439C3200A647AE /* MapKit.framework */; };
+		6A71AC0F1F43A6AD00A647AE /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A71AC0E1F43A6AD00A647AE /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		6A71AC071F43867000A647AE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		6A71AC081F43867000A647AE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		6A71AC0B1F439C3200A647AE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6A71AC0D1F43A6AD00A647AE /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		6A71AC0E1F43A6AD00A647AE /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,8 @@
 				6A71ABF31F437F6B00A647AE /* Main.storyboard */,
 				6A71AC071F43867000A647AE /* DetailViewController.h */,
 				6A71AC081F43867000A647AE /* DetailViewController.m */,
+				6A71AC0D1F43A6AD00A647AE /* SearchViewController.h */,
+				6A71AC0E1F43A6AD00A647AE /* SearchViewController.m */,
 				6A71ABF61F437F6B00A647AE /* Assets.xcassets */,
 				6A71ABF81F437F6B00A647AE /* LaunchScreen.storyboard */,
 				6A71ABFB1F437F6B00A647AE /* Info.plist */,
@@ -188,6 +193,7 @@
 				6A71ABEC1F437F6B00A647AE /* main.m in Sources */,
 				6A71AC061F437FFC00A647AE /* FlickrCollectionViewCell.m in Sources */,
 				6A71AC091F43867000A647AE /* DetailViewController.m in Sources */,
+				6A71AC0F1F43A6AD00A647AE /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
