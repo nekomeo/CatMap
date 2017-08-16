@@ -123,9 +123,6 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Tg5-ak-C5L">
                                 <rect key="frame" x="215" y="157" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="myLocationToggle:" destination="3oH-Xl-E5h" eventType="valueChanged" id="0lW-vn-BCx"/>
-                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugJ-Av-9c0">
                                 <rect key="frame" x="110" y="162" width="94" height="21"/>
@@ -146,7 +143,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="myLocationToggle" destination="Tg5-ak-C5L" id="njQ-cP-bjm"/>
+                        <outlet property="myLocationToggle" destination="Tg5-ak-C5L" id="WEh-UM-kW2"/>
                         <outlet property="searchTextField" destination="hGv-VY-tXL" id="A7a-qL-niY"/>
                     </connections>
                 </viewController>

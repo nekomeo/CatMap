@@ -16,11 +16,8 @@
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MyLocationManagerDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray<Flickr *> *flickrArray;
+@property (nonatomic, strong) NSMutableArray *flickrArray;
 @property (nonatomic, strong) LocationManager *location;
-
-//@property (nonatomic, assign) float latitude;
-//@property (nonatomic, assign) float longitude;
 
 @end
 
@@ -29,27 +26,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupWithTag:@"cats"];
+    [self setupWithTag:@"cats" withMyLocation:NO];
     
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
     self.location = [LocationManager sharedManager];
     self.location.delegate = self;
+    [self.location startLocationManager];
 }
 
 #pragma mark - URL Request Info
-// add parameter -> tag
-- (void)setupWithTag:(NSString *)tag
+
+- (void)setupWithTag:(NSString *)tag withMyLocation:(BOOL)shouldUseLocation
 {
     self.flickrArray = [NSMutableArray array];
     
-//    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=51fe506858b9869a0fb583d7f206ef60&tags=cats&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1&auth_token=72157687552533846-8213e459faa22de1&api_sig=680cef5512f113c734ecad43740c147b"]; // -> format this string with the new tag
-
-    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=51fe506858b9869a0fb583d7f206ef60&tags=%@" /*@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=51fe506858b9869a0fb583d7f206ef60&tags=%@&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1&auth_token=72157687552533846-8213e459faa22de1&api_sig=680cef5512f113c734ecad43740c147b"*/, tag];
+    NSString *urlString;
     
+    if (shouldUseLocation)
+    {
+         urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=%@&lat=%f&lon=%f", tag, self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude];
+    }
+    
+    else
+    {
+        urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=%@", tag];
+    }
+//    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=51fe506858b9869a0fb583d7f206ef60&tags=%@", tag];
+    
+//    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=51fe506858b9869a0fb583d7f206ef60&tags=%@%@", tag, self.locationTag];
+    
+//    NSLog(@"Url: %@", urlString);
+//    
+//    url = [NSURL URLWithString:urlString];
     NSURL *url = [NSURL URLWithString:urlString];
-    
-//    NSURLComponents *URLComponent = [[NSURLComponents alloc] initWithString:urlString];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     
@@ -66,8 +76,6 @@
             NSDictionary *photoDictionary = jsonDictionary[@"photos"];
             NSMutableArray *photoArray = photoDictionary[@"photo"];
             
-            
-            // do something to initialize new array
             [self.flickrArray removeAllObjects];
             
             for (NSDictionary *flickr in photoArray)
@@ -151,24 +159,11 @@
 #pragma mark - Flickr Map Stuff
 
 - (void)passCurrentLocation:(CLLocation *)location
-{
-//    self.latitude = location.coordinate.latitude;
-//    self.longitude = location.coordinate.longitude;
-}
+{}
 
-- (void)newSearch:(NSString *)tag withLocation:(BOOL)location
+- (void)newSearch:(NSString *)tag withLocation:(BOOL)shouldUseLocation
 {
-//    [self.flickrArray addObject:location];
-//    [self.collectionView reloadData];
-    if (location)
-    {
-        [self.location startLocationManager];
-    }
-    else
-    {
-        [self.location stopLocationManager];
-    }
-    [self setupWithTag:tag];
+    [self setupWithTag:tag withMyLocation:YES];
 }
 
 

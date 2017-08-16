@@ -11,7 +11,7 @@
 
 @protocol SearchViewControllerDelegate <NSObject>
 
-- (void)newSearch:(NSString *)tag withLocation:(BOOL)location;
+- (void)newSearch:(NSString *)tag withLocation:(BOOL)shouldUseLocation;
 
 @end
 

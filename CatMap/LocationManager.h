@@ -18,6 +18,7 @@
 
 @interface LocationManager : NSObject
 @property (nonatomic, weak) id<MyLocationManagerDelegate> delegate;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 +(id)sharedManager;
 - (void)startLocationManager;
