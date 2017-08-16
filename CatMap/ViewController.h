@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SearchViewController.h"
 
-@interface ViewController : UIViewController <SearchViewControllerDelegate>
+@interface ViewController : UIViewController
 
 
 @end

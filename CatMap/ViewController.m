@@ -14,7 +14,7 @@
 #import "LocationManager.h"
 
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MyLocationManagerDelegate>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MyLocationManagerDelegate, SearchViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *flickrArray;
 @property (nonatomic, strong) LocationManager *location;
@@ -45,7 +45,12 @@
     
     if (shouldUseLocation)
     {
+        if (self.location.currentLocation == nil)
+        {
+            NSLog(@"nil");
+        }
          urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=%@&lat=%f&lon=%f", tag, self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude];
+        NSLog(@"Current Location: %f, %f", self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude);
     }
     
     else
@@ -159,11 +164,13 @@
 #pragma mark - Flickr Map Stuff
 
 - (void)passCurrentLocation:(CLLocation *)location
-{}
+{
+    NSLog(@"Inside PassCurrentLocation: %f, %f", location.coordinate.latitude, location.coordinate.longitude);
+}
 
 - (void)newSearch:(NSString *)tag withLocation:(BOOL)shouldUseLocation
 {
-    [self setupWithTag:tag withMyLocation:YES];
+    [self setupWithTag:tag withMyLocation:shouldUseLocation];
 }
 
 
