@@ -31,7 +31,15 @@
 
 - (void)mapSetup
 {
-//    CLLocationCoordinate2D *location = 
+    CLLocationCoordinate2D center;
+    center.latitude = 0;
+    center.longitude = 0;
+    
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(center.latitude, center.longitude);
+    
+    MKCoordinateRegion adjustRegion = MKCoordinateRegionMakeWithDistance(location, 2100, 2100);
+    
+    [self.mapView setRegion:adjustRegion animated:YES];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {

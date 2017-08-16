@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "LocationManager.h"
 
+@protocol SearchViewControllerDelegate <NSObject>
+
+- (void)newSearch:(NSString *)tag withLocation:(BOOL)location;
+
+@end
+
 @interface SearchViewController : UIViewController
+
+@property (nonatomic, weak) id<SearchViewControllerDelegate> delegate;
 
 @end

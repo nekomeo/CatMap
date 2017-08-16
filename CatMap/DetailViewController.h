@@ -12,7 +12,8 @@
 
 @interface DetailViewController : UIViewController <MKMapViewDelegate>
 @property (nonatomic) Flickr *flickr;
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+//@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
 
 - (void)addAnnotation:(id<MKAnnotation>)annotation;
 
