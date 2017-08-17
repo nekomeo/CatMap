@@ -16,17 +16,6 @@
 
 @implementation LocationManager
 
-//+(id)sharedManager
-//{
-//    static LocationManager *sharedMyManager = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        sharedMyManager = [[self alloc] init];
-//        
-//    });
-//    return sharedMyManager;
-//}
-
 - (void)startLocationManager
 {
     if ([CLLocationManager locationServicesEnabled])
@@ -49,7 +38,6 @@
         else
         {
             // Send the user to settings to enable location updates
-            
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Location services are disabled, Please go into Settings > Privacy > Location to enable them for Play" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -100,28 +88,6 @@
     
     // Call this because we called `startUpdatingLocation` earlier
     [self stopLocationManager];
-    
-    
-    
-    
-    
-//    if (location.horizontalAccuracy < 0)
-//    {
-//        return;
-//    }
-//    
-//    if (self.currentLocation == nil || self.currentLocation.horizontalAccuracy >= location.horizontalAccuracy)
-//    {
-//        self.currentLocation = location;
-//        
-//        NSLog(@"Inside this location: %f %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
-//        [self.delegate passCurrentLocation:self.currentLocation];
-//        
-//        if (location.horizontalAccuracy <= self.locationManager.desiredAccuracy)
-//        {
-//            [self stopLocationManager];
-//        }
-//    }
 }
 
 - (void)stopLocationManager

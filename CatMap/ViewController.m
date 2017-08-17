@@ -28,17 +28,11 @@
 {
     [super viewDidLoad];
     
-    
-    
     self.location = [[LocationManager alloc] init];
     self.location.delegate = self;
     [self.location startLocationManager];
 
-
-    
     [self setupWithTag:@"cats" withMyLocation:NO];
-    
-    
     
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
@@ -54,12 +48,7 @@
     
     if (shouldUseLocation)
     {
-        if (self.location.currentLocation == nil)
-        {
-            NSLog(@"nil");
-        }
-         urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=%@&lat=%f&lon=%f", tag, self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude];
-        NSLog(@"Current Location: %f, %f", self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude);
+        urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2faeb61fe9d4a0ca1c072c5588ef6cfa&tags=%@&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1&lat=%f&lon=%f", tag, self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude];
     }
     
     else

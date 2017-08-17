@@ -31,15 +31,24 @@
 
 - (void)mapSetup
 {
-    CLLocationCoordinate2D center;
-    center.latitude = 0;
-    center.longitude = 0;
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:self.flickr.coordinate.latitude longitude:self.flickr.coordinate.longitude];
     
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(center.latitude, center.longitude);
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        
+        if (placemark)
+        {
+            NSString *location = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+            NSLog(@"I am currently at: %@", location);
+            
+//            NSLog(@"Address Dictionary %@", placemark.addressDictionary);
+            
+            self.imageCountryLabel.text = placemark.country;
+        }
+        
+    }];
     
-    MKCoordinateRegion adjustRegion = MKCoordinateRegionMakeWithDistance(location, 2100, 2100);
-    
-    [self.mapView setRegion:adjustRegion animated:YES];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -52,8 +61,12 @@
         pin = [[MKPinAnnotationView alloc] initWithAnnotation:self.flickr reuseIdentifier:redPin];
         pin.pinTintColor = [UIColor redColor];
         pin.animatesDrop = YES;
+        
+        pin.canShowCallout = YES;
+        [pin setEnabled:YES];
     }
     return pin;
+    
 }
 
 - (void)addAnnotation:(id<MKAnnotation>)annotation

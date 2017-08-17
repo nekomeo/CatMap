@@ -10,12 +10,6 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-//@protocol MyLocationManagerDelegate <NSObject>
-//
-//- (void)currentLocation:(CLLocation *)location;
-//
-//@end
-
 @interface Flickr : NSObject <MKAnnotation>
 @property (nonatomic, strong) NSString *server;
 @property (nonatomic, strong) NSString *farm;
@@ -26,7 +20,6 @@
 @property (nonatomic, assign) double longitude;
 @property (nonatomic, assign) double latitude;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
-//@property (nonatomic, weak) id<MyLocationManagerDelegate> delegate;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (NSURL *)imageURL;
