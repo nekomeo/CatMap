@@ -34,6 +34,9 @@
                             <constraint firstItem="oRL-oC-4v0" firstAttribute="top" secondItem="lTD-UP-3lk" secondAttribute="bottom" id="Tlq-4H-Ggz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="showAllMap" destination="lTD-UP-3lk" id="ZA9-Qg-mdQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wOy-OZ-nrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

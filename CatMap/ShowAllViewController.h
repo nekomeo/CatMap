@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "Flickr.h"
 
 @interface ShowAllViewController : UIViewController
+@property (nonatomic, strong) NSMutableArray <Flickr *> *allPhotos;
 
 @end

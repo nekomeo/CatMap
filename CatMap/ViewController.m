@@ -12,6 +12,7 @@
 #import "DetailViewController.h"
 #import "SearchViewController.h"
 #import "LocationManager.h"
+#import "ShowAllViewController.h"
 
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MyLocationManagerDelegate, SearchViewControllerDelegate>
@@ -26,13 +27,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
+    self.location = [[LocationManager alloc] init];
+    self.location.delegate = self;
+    [self.location startLocationManager];
+
+
+    
     [self setupWithTag:@"cats" withMyLocation:NO];
+    
+    
     
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
-    self.location = [LocationManager sharedManager];
-    self.location.delegate = self;
-    [self.location startLocationManager];
 }
 
 #pragma mark - URL Request Info
@@ -57,13 +66,7 @@
     {
         urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=%@", tag];
     }
-//    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=51fe506858b9869a0fb583d7f206ef60&tags=%@", tag];
     
-//    NSString *urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=51fe506858b9869a0fb583d7f206ef60&tags=%@%@", tag, self.locationTag];
-    
-//    NSLog(@"Url: %@", urlString);
-//    
-//    url = [NSURL URLWithString:urlString];
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
@@ -154,6 +157,11 @@
         SearchViewController *searchVC = (SearchViewController *)[segue destinationViewController];
         searchVC.delegate = self;
     }
+    else if ([segue.identifier isEqualToString:@"toShowAll"])
+    {
+//        ShowAllViewController *showAllVC = (ShowAllViewController *)[segue destinationViewController];
+//        showAllVC.allPhotos = self.allPhotos;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -165,11 +173,15 @@
 
 - (void)passCurrentLocation:(CLLocation *)location
 {
+    // Wait until this get's called until you call `setupWithTag`
     NSLog(@"Inside PassCurrentLocation: %f, %f", location.coordinate.latitude, location.coordinate.longitude);
 }
 
 - (void)newSearch:(NSString *)tag withLocation:(BOOL)shouldUseLocation
 {
+    // If `shouldUseLocation` is YES
+    // Get the user's current location
+    // Then call `setupWithTag` from the `passCurrentLocation` method
     [self setupWithTag:tag withMyLocation:shouldUseLocation];
 }
 

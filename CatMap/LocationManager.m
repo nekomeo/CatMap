@@ -16,26 +16,40 @@
 
 @implementation LocationManager
 
-+(id)sharedManager
-{
-    static LocationManager *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
-}
+//+(id)sharedManager
+//{
+//    static LocationManager *sharedMyManager = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedMyManager = [[self alloc] init];
+//        
+//    });
+//    return sharedMyManager;
+//}
 
 - (void)startLocationManager
 {
     if ([CLLocationManager locationServicesEnabled])
     {
-        if ((!([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted)) || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+        BOOL undetermined = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined;
+        BOOL authorized = [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways;
+        if (undetermined)
         {
+            // request authorization
+            // Then request location
             [self setupLocationManager];
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        else if (authorized)
+        {
+            // request location
+            [self setupLocationManager];
+            [self.locationManager startUpdatingLocation];
         }
         else
         {
+            // Send the user to settings to enable location updates
+            
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Location services are disabled, Please go into Settings > Privacy > Location to enable them for Play" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -56,9 +70,18 @@
     {
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
-        
-        [self.locationManager requestWhenInUseAuthorization];
     }
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways)
+    {
+        // User has granted permission to get their location
+        [self.locationManager startUpdatingLocation];
+    }
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
@@ -71,21 +94,34 @@
         return;
     }
     
-    if (location.horizontalAccuracy < 0)
-    {
-        return;
-    }
+    self.currentLocation = location;
     
-    if (self.currentLocation == nil || self.currentLocation.horizontalAccuracy >= location.horizontalAccuracy)
-    {
-        self.currentLocation = location;
-        [self.delegate passCurrentLocation:self.currentLocation];
-        
-        if (location.horizontalAccuracy <= self.locationManager.desiredAccuracy)
-        {
-            [self stopLocationManager];
-        }
-    }
+    [self.delegate passCurrentLocation:self.currentLocation];
+    
+    // Call this because we called `startUpdatingLocation` earlier
+    [self stopLocationManager];
+    
+    
+    
+    
+    
+//    if (location.horizontalAccuracy < 0)
+//    {
+//        return;
+//    }
+//    
+//    if (self.currentLocation == nil || self.currentLocation.horizontalAccuracy >= location.horizontalAccuracy)
+//    {
+//        self.currentLocation = location;
+//        
+//        NSLog(@"Inside this location: %f %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
+//        [self.delegate passCurrentLocation:self.currentLocation];
+//        
+//        if (location.horizontalAccuracy <= self.locationManager.desiredAccuracy)
+//        {
+//            [self stopLocationManager];
+//        }
+//    }
 }
 
 - (void)stopLocationManager

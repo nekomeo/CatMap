@@ -20,7 +20,7 @@
 @property (nonatomic, weak) id<MyLocationManagerDelegate> delegate;
 @property (nonatomic, strong) CLLocation *currentLocation;
 
-+(id)sharedManager;
+//+(id)sharedManager;
 - (void)startLocationManager;
 - (void)stopLocationManager;
 
