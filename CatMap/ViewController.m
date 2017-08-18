@@ -33,7 +33,7 @@
 
     [self.locationManager startLocationManager];
 
-    [self setupWithTag:@"kittens" withMyLocation:NO];
+    [self performSegueWithIdentifier: @"toSearch" sender: self];
     
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
@@ -49,7 +49,7 @@
     
     if (shouldUseLocation)
     {
-        urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2faeb61fe9d4a0ca1c072c5588ef6cfa&tags=%@&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1&lat=%f&lon=%f", tag, self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
+        urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=03ad1cec4ae7d6e42ffa712907e76d76&tags=%@&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1&lat=%f&lon=%f", tag, self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
     }
     
     else
