@@ -112,7 +112,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="toI-7y-bh6">
-                        <barButtonItem key="leftBarButtonItem" title="Show All" id="SrY-SV-lCL"/>
+                        <barButtonItem key="leftBarButtonItem" title="Show All" id="SrY-SV-lCL">
+                            <connections>
+                                <segue destination="A4x-Av-FQq" kind="show" identifier="toShowAll" id="XLV-Mu-A1Z"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="3Zm-5V-6ag">
                             <connections>
                                 <segue destination="3oH-Xl-E5h" kind="presentation" identifier="toSearch" id="B5m-Ik-TwC"/>
@@ -122,7 +126,6 @@
                     <connections>
                         <outlet property="collectionView" destination="A4h-tj-SnE" id="fVa-c6-VtW"/>
                         <segue destination="bgV-fQ-4xV" kind="show" identifier="toDetailView" id="fkK-Rn-GYC"/>
-                        <segue destination="A4x-Av-FQq" kind="presentation" identifier="toShowAll" id="iOj-zv-smI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -204,8 +207,8 @@
                                 </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmX-jg-vYM">
-                                <rect key="frame" x="16" y="64" width="343" height="14.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <rect key="frame" x="16" y="64" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -222,7 +225,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageCountryLabel" destination="HmX-jg-vYM" id="PAm-AW-18c"/>
+                        <outlet property="imageLocationLabel" destination="HmX-jg-vYM" id="9uN-JU-lPq"/>
                         <outlet property="mapView" destination="cQu-x6-bLM" id="jgQ-xa-Gz4"/>
                     </connections>
                 </viewController>

@@ -12,6 +12,7 @@
 @protocol SearchViewControllerDelegate <NSObject>
 
 - (void)newSearch:(NSString *)tag withLocation:(BOOL)shouldUseLocation;
+- (void)showAllWithTag:(NSString *)tag withLatitude:(float)latitude andLongitude:(float)longitude;
 
 @end
 

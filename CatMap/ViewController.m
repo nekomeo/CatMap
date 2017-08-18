@@ -18,7 +18,7 @@
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MyLocationManagerDelegate, SearchViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *flickrArray;
-@property (nonatomic, strong) LocationManager *location;
+@property (nonatomic, strong) LocationManager *locationManager;
 
 @end
 
@@ -28,11 +28,12 @@
 {
     [super viewDidLoad];
     
-    self.location = [[LocationManager alloc] init];
-    self.location.delegate = self;
-    [self.location startLocationManager];
+    self.locationManager = [LocationManager sharedManager];
+    self.locationManager.delegate = self;
 
-    [self setupWithTag:@"cats" withMyLocation:NO];
+    [self.locationManager startLocationManager];
+
+    [self setupWithTag:@"kittens" withMyLocation:NO];
     
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     
@@ -48,7 +49,7 @@
     
     if (shouldUseLocation)
     {
-        urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2faeb61fe9d4a0ca1c072c5588ef6cfa&tags=%@&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1&lat=%f&lon=%f", tag, self.location.currentLocation.coordinate.latitude, self.location.currentLocation.coordinate.longitude];
+        urlString = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2faeb61fe9d4a0ca1c072c5588ef6cfa&tags=%@&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1&lat=%f&lon=%f", tag, self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
     }
     
     else
@@ -148,8 +149,8 @@
     }
     else if ([segue.identifier isEqualToString:@"toShowAll"])
     {
-//        ShowAllViewController *showAllVC = (ShowAllViewController *)[segue destinationViewController];
-//        showAllVC.allPhotos = self.allPhotos;
+        ShowAllViewController *showAllVC = (ShowAllViewController *)[segue destinationViewController];
+        showAllVC.allPhotos = self.flickrArray;
     }
 }
 
@@ -173,6 +174,9 @@
     // Then call `setupWithTag` from the `passCurrentLocation` method
     [self setupWithTag:tag withMyLocation:shouldUseLocation];
 }
+
+- (void)showAllWithTag:(NSString *)tag withLatitude:(float)latitude andLongitude:(float)longitude
+{}
 
 
 @end

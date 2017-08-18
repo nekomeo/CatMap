@@ -10,7 +10,8 @@
 
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UILabel *imageCountryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *imageLocationLabel;
+
 
 @end
 
@@ -42,9 +43,7 @@
             NSString *location = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
             NSLog(@"I am currently at: %@", location);
             
-//            NSLog(@"Address Dictionary %@", placemark.addressDictionary);
-            
-            self.imageCountryLabel.text = placemark.country;
+            self.imageLocationLabel.text = [NSString stringWithFormat:@"%@", location];
         }
         
     }];
@@ -55,7 +54,7 @@
     
     static NSString *redPin = @"RedPin";
     MKPinAnnotationView *pin = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:redPin];
-    
+   // self.flickr. = @"hello world";
     if (!pin)
     {
         pin = [[MKPinAnnotationView alloc] initWithAnnotation:self.flickr reuseIdentifier:redPin];
@@ -65,6 +64,7 @@
         pin.canShowCallout = YES;
         [pin setEnabled:YES];
     }
+    
     return pin;
     
 }

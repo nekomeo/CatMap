@@ -16,6 +16,15 @@
 
 @implementation LocationManager
 
++(id)sharedManager{
+    static LocationManager *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
 - (void)startLocationManager
 {
     if ([CLLocationManager locationServicesEnabled])
